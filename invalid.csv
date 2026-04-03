@@ -1,0 +1,14 @@
+url,title,ai_model_mentioned,citations_count,sentiment,visibility_score,competitor_mentioned,query_category,last_updated,traffic_estimate,domain_authority,mentions_count,position_in_response,response_type,geographic_region
+,Missing URL Title,ChatGPT,100,positive,75,Competitor,category,2024-12-01,500000,80,50,1,recommendation_list,global
+not-a-url,Bad URL Format,Claude,50,positive,60,Competitor,category,2024-12-01,300000,70,30,2,comparison,global
+ftp://example.com/page,FTP Not Allowed,Gemini,75,positive,65,Competitor,category,2024-12-01,400000,75,40,3,overview,global
+https://www.example.com/valid,,200,positive,80,Competitor,category,2024-12-01,600000,85,60,1,guide,global
+https://www.example.com/valid2,Negative Citations,ChatGPT,-5,positive,70,Competitor,category,2024-12-01,500000,80,50,1,guide,global
+https://www.example.com/valid3,Non-numeric Citations,Claude,abc,positive,70,Competitor,category,2024-12-01,500000,80,50,1,guide,global
+https://www.example.com/valid4,Bad Visibility Score,Gemini,100,positive,not-a-number,Competitor,category,2024-12-01,500000,80,50,1,guide,global
+https://www.example.com/valid5,Bad Date,ChatGPT,100,positive,75,Competitor,category,not-a-date,500000,80,50,1,guide,global
+https://www.example.com/valid6,Bad Traffic,Claude,100,positive,75,Competitor,category,2024-12-01,not-a-number,80,50,1,guide,global
+https://www.example.com/valid7,Bad Domain Authority,Gemini,100,positive,75,Competitor,category,2024-12-01,500000,xx,50,1,guide,global
+https://www.example.com/valid8,Bad Mentions Count,ChatGPT,100,positive,75,Competitor,category,2024-12-01,500000,80,abc,1,guide,global
+https://www.example.com/valid9,Bad Position,Claude,100,positive,75,Competitor,category,2024-12-01,500000,80,50,xyz,guide,global
+https://www.example.com/valid10,Multiple Errors Row,,abc,positive,,Competitor,category,not-a-date,,80,,xyz,guide,global
