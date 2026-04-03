@@ -6,8 +6,8 @@ const DEFAULT_USERS = [
   // Add your own user to pre-populate the database with
   {
     name: "Tim Apple",
-    email: "tim@apple.com",
-  },
+    email: "tim@apple.com"
+  }
 ] as Array<Partial<User>>;
 
 (async () => {
@@ -16,16 +16,16 @@ const DEFAULT_USERS = [
       DEFAULT_USERS.map((user) =>
         prisma.user.upsert({
           where: {
-            email: user.email!,
+            email: user.email!
           },
           update: {
-            ...user,
+            ...user
           },
           create: {
-            ...user,
-          },
-        }),
-      ),
+            ...user
+          }
+        })
+      )
     );
   } catch (error) {
     console.error(error);

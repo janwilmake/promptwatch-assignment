@@ -8,3 +8,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Sentiment {
+  positive
+  negative
+  neutral
+}
+
+model UrlRecord {
+  id                  String    @id @default(cuid())
+  url                 String
+  title               String
+  aiModelMentioned    String
+  citationsCount      Int
+  sentiment           Sentiment
+  visibilityScore     Float
+  competitorMentioned String
+  queryCategory       String
+  lastUpdated         DateTime
+  trafficEstimate     Int
+  domainAuthority     Int
+  mentionsCount       Int
+  positionInResponse  Int
+  responseType        String
+  geographicRegion    String
+  createdAt           DateTime  @default(now())
+
+  @@unique([url, aiModelMentioned, lastUpdated])
+}
+
