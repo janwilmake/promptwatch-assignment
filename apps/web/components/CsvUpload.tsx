@@ -3,11 +3,18 @@ import { trpc } from "../utils/trpc";
 import { Button } from "./ui/button";
 
 export const CsvUpload = () => {
-  const [result, setResult] = useState<{ rowCount: number; skipped: number } | null>(null);
+  const [result, setResult] = useState<{ rowCount: number; duplicates: number; skipped: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const utils = trpc.useContext();
+
   const upload = trpc.upload.upload.useMutation({
-    onSuccess: (data) => setResult(data),
+    onSuccess: (data) => {
+      setResult(data);
+      utils.urls.list.invalidate();
+      utils.urls.byDomain.invalidate();
+      utils.urls.byDate.invalidate();
+    },
   });
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +52,9 @@ export const CsvUpload = () => {
         <p className="text-sm text-muted-foreground">
           Imported{" "}
           <span className="font-medium text-foreground">{result.rowCount}</span> rows
+          {result.duplicates > 0 && (
+            <span className="text-muted-foreground"> · {result.duplicates} duplicate{result.duplicates !== 1 ? "s" : ""} skipped</span>
+          )}
           {result.skipped > 0 && (
             <span className="text-destructive"> · {result.skipped} invalid row{result.skipped !== 1 ? "s" : ""} skipped</span>
           )}

@@ -15,13 +15,16 @@ export const uploadRouter = router({
 
       const { valid, invalid } = validateAndParseCsvRows(raw);
 
+      let inserted = 0;
       if (valid.length > 0) {
-        await ctx.prisma.urlRecord.createMany({ data: valid, skipDuplicates: true });
+        const result = await ctx.prisma.urlRecord.createMany({ data: valid, skipDuplicates: true });
+        inserted = result.count;
       }
 
       return {
         filename: input.filename,
-        rowCount: valid.length,
+        rowCount: inserted,
+        duplicates: valid.length - inserted,
         skipped: invalid.length,
         errors: invalid,
       };
