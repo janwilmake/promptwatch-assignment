@@ -23,15 +23,20 @@
     "lint": "eslint . --max-warnings 0",
     "prebuild": "npm run generate",
     "predev": "npm run generate",
+    "prepare": "npm run build",
     "studio": "prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "latest"
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "latest",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.0.0",
+    "@types/pg": "^8.20.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "prisma": "latest",
     "rimraf": "^5.0.5",
